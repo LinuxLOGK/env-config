@@ -1,0 +1,169 @@
++ cd <HOME>/linux-v0
+++ cat <HOME>/v0-prep-logs/<RUN_LOG_DIR>/expected-release.txt
++ release=5.4.214-team-v0
+++ cat <HOME>/v0-prep-logs/<RUN_LOG_DIR>/original-release.txt
++ old_release=<PREVIOUS_KERNEL>
++ test 5.4.214-team-v0 = 5.4.214-team-v0
+++ uname -r
++ test <PREVIOUS_KERNEL> = <PREVIOUS_KERNEL>
+++ git rev-parse HEAD
++ test 9f02aa34e179d1b0185a27980dd5bafd0f2e6e59 = 9f02aa34e179d1b0185a27980dd5bafd0f2e6e59
+++ make -s kernelrelease LOCALVERSION=-team-v0
++ test 5.4.214-team-v0 = 5.4.214-team-v0
++ cmp .config <HOME>/v0-prep-logs/<RUN_LOG_DIR>/config.built
++ for path in "/boot/vmlinuz-$release" "/boot/initrd.img-$release" "/boot/config-$release" "/boot/System.map-$release" "/lib/modules/$release"
++ test '!' -e /boot/vmlinuz-5.4.214-team-v0
++ test '!' -L /boot/vmlinuz-5.4.214-team-v0
++ for path in "/boot/vmlinuz-$release" "/boot/initrd.img-$release" "/boot/config-$release" "/boot/System.map-$release" "/lib/modules/$release"
++ test '!' -e /boot/initrd.img-5.4.214-team-v0
++ test '!' -L /boot/initrd.img-5.4.214-team-v0
++ for path in "/boot/vmlinuz-$release" "/boot/initrd.img-$release" "/boot/config-$release" "/boot/System.map-$release" "/lib/modules/$release"
++ test '!' -e /boot/config-5.4.214-team-v0
++ test '!' -L /boot/config-5.4.214-team-v0
++ for path in "/boot/vmlinuz-$release" "/boot/initrd.img-$release" "/boot/config-$release" "/boot/System.map-$release" "/lib/modules/$release"
++ test '!' -e /boot/System.map-5.4.214-team-v0
++ test '!' -L /boot/System.map-5.4.214-team-v0
++ for path in "/boot/vmlinuz-$release" "/boot/initrd.img-$release" "/boot/config-$release" "/boot/System.map-$release" "/lib/modules/$release"
++ test '!' -e /lib/modules/5.4.214-team-v0
++ test '!' -L /lib/modules/5.4.214-team-v0
++ sha256sum /boot/vmlinuz-<PREVIOUS_KERNEL> /boot/initrd.img-<PREVIOUS_KERNEL> /boot/config-<PREVIOUS_KERNEL>
++ cp /boot/grub/grub.cfg <HOME>/v0-prep-logs/<RUN_LOG_DIR>/grub.before.cfg
++ sudo -v
++ sudo make LOCALVERSION=-team-v0 modules_install
+  INSTALL arch/x86/crypto/aesni-intel.ko
+  INSTALL arch/x86/crypto/crc32-pclmul.ko
+  INSTALL arch/x86/crypto/crct10dif-pclmul.ko
+  INSTALL arch/x86/crypto/ghash-clmulni-intel.ko
+  INSTALL arch/x86/crypto/glue_helper.ko
+  INSTALL arch/x86/kernel/msr.ko
+  INSTALL crypto/cryptd.ko
+  INSTALL crypto/crypto_simd.ko
+  INSTALL drivers/acpi/video.ko
+  INSTALL drivers/ata/acard-ahci.ko
+  INSTALL drivers/ata/ahci.ko
+  INSTALL drivers/ata/ahci_platform.ko
+  INSTALL drivers/ata/libahci.ko
+  INSTALL drivers/ata/libahci_platform.ko
+  INSTALL drivers/ata/pata_acpi.ko
+  INSTALL drivers/char/lp.ko
+  INSTALL drivers/char/ppdev.ko
+  INSTALL drivers/firmware/efi/efi-pstore.ko
+  INSTALL drivers/gpu/drm/drm.ko
+  INSTALL drivers/gpu/drm/drm_kms_helper.ko
+  INSTALL drivers/gpu/drm/ttm/ttm.ko
+  INSTALL drivers/gpu/drm/vmwgfx/vmwgfx.ko
+  INSTALL drivers/hid/hid-generic.ko
+  INSTALL drivers/hid/hid.ko
+  INSTALL drivers/hid/usbhid/usbhid.ko
+  INSTALL drivers/i2c/algos/i2c-algo-bit.ko
+  INSTALL drivers/i2c/busses/i2c-piix4.ko
+  INSTALL drivers/input/input-leds.ko
+  INSTALL drivers/input/joydev.ko
+  INSTALL drivers/input/mouse/psmouse.ko
+  INSTALL drivers/input/serio/serio_raw.ko
+  INSTALL drivers/macintosh/mac_hid.ko
+  INSTALL drivers/net/ethernet/intel/e1000/e1000.ko
+  INSTALL drivers/parport/parport.ko
+  INSTALL drivers/parport/parport_pc.ko
+  INSTALL drivers/video/fbdev/core/fb_sys_fops.ko
+  INSTALL drivers/video/fbdev/core/syscopyarea.ko
+  INSTALL drivers/video/fbdev/core/sysfillrect.ko
+  INSTALL drivers/video/fbdev/core/sysimgblt.ko
+  INSTALL drivers/virt/vboxguest/vboxguest.ko
+  INSTALL drivers/xen/xen-privcmd.ko
+  INSTALL fs/autofs/autofs4.ko
+  INSTALL fs/binfmt_misc.ko
+  INSTALL fs/isofs/isofs.ko
+  INSTALL fs/nls/nls_iso8859-1.ko
+  INSTALL fs/pstore/ramoops.ko
+  INSTALL kernel/configs.ko
+  INSTALL lib/reed_solomon/reed_solomon.ko
+  INSTALL net/ipv4/netfilter/ip_tables.ko
+  INSTALL net/netfilter/x_tables.ko
+  INSTALL net/netfilter/xt_tcpudp.ko
+  INSTALL net/sched/sch_fq_codel.ko
+  INSTALL sound/ac97_bus.ko
+  INSTALL sound/core/seq/snd-seq.ko
+  INSTALL sound/core/snd-pcm.ko
+  INSTALL sound/core/snd-seq-device.ko
+  INSTALL sound/core/snd-timer.ko
+  INSTALL sound/core/snd.ko
+  INSTALL sound/pci/ac97/snd-ac97-codec.ko
+  INSTALL sound/pci/snd-intel8x0.ko
+  INSTALL sound/soundcore.ko
+  DEPMOD  5.4.214-team-v0
++ sudo make LOCALVERSION=-team-v0 install
+sh ./arch/x86/boot/install.sh 5.4.214-team-v0 arch/x86/boot/bzImage \
+	System.map "/boot"
+run-parts: executing /etc/kernel/postinst.d/dkms 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+ * dkms: running auto installation service for kernel 5.4.214-team-v0
+   ...done.
+run-parts: executing /etc/kernel/postinst.d/initramfs-tools 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+update-initramfs: Generating /boot/initrd.img-5.4.214-team-v0
+run-parts: executing /etc/kernel/postinst.d/unattended-upgrades 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+run-parts: executing /etc/kernel/postinst.d/update-notifier 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+run-parts: executing /etc/kernel/postinst.d/vboxadd 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+VirtualBox Guest Additions: Building the Guest Additions 7.2.16 modules for 
+kernel 5.4.214-team-v0.
+VirtualBox Guest Additions: Building the main module.
+VirtualBox Guest Additions: Makefile:205: arch/x86/boot/Makefile-footer.gmk: No 
+such file or directory
+make[2]: *** No rule to make target 'arch/x86/boot/Makefile-footer.gmk'.  Stop.
+VirtualBox Guest Additions: Look at /var/log/vboxadd-setup.log to find out what 
+went wrong
+run-parts: executing /etc/kernel/postinst.d/xx-update-initrd-links 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+I: /boot/initrd.img.old is now a symlink to initrd.img-<PREVIOUS_KERNEL>
+I: /boot/initrd.img is now a symlink to initrd.img-5.4.214-team-v0
+run-parts: executing /etc/kernel/postinst.d/zz-update-grub 5.4.214-team-v0 /boot/vmlinuz-5.4.214-team-v0
+Sourcing file `/etc/default/grub'
+Sourcing file `/etc/default/grub.d/init-select.cfg'
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.4.214-team-v0
+Found initrd image: /boot/initrd.img-5.4.214-team-v0
+Found linux image: /boot/vmlinuz-<PREVIOUS_KERNEL>
+Found initrd image: /boot/initrd.img-<PREVIOUS_KERNEL>
+Found linux image: /boot/vmlinuz-<PREVIOUS_KERNEL>
+Found initrd image: /boot/initrd.img-<PREVIOUS_KERNEL>
+Found memtest86+ image: /boot/memtest86+.elf
+Found memtest86+ image: /boot/memtest86+.bin
+done
++ test -s /boot/initrd.img-5.4.214-team-v0
++ sudo update-grub
+Sourcing file `/etc/default/grub'
+Sourcing file `/etc/default/grub.d/init-select.cfg'
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.4.214-team-v0
+Found initrd image: /boot/initrd.img-5.4.214-team-v0
+Found linux image: /boot/vmlinuz-<PREVIOUS_KERNEL>
+Found initrd image: /boot/initrd.img-<PREVIOUS_KERNEL>
+Found linux image: /boot/vmlinuz-<PREVIOUS_KERNEL>
+Found initrd image: /boot/initrd.img-<PREVIOUS_KERNEL>
+Found memtest86+ image: /boot/memtest86+.elf
+Found memtest86+ image: /boot/memtest86+.bin
+done
++ cmp arch/x86/boot/bzImage /boot/vmlinuz-5.4.214-team-v0
++ cmp System.map /boot/System.map-5.4.214-team-v0
++ cmp .config /boot/config-5.4.214-team-v0
++ test -s /boot/initrd.img-5.4.214-team-v0
++ test -s /lib/modules/5.4.214-team-v0/modules.dep
++ sha256sum -c <HOME>/v0-prep-logs/<RUN_LOG_DIR>/original-files.sha256
+/boot/vmlinuz-<PREVIOUS_KERNEL>: OK
+/boot/initrd.img-<PREVIOUS_KERNEL>: OK
+/boot/config-<PREVIOUS_KERNEL>: OK
++ test -d /lib/modules/<PREVIOUS_KERNEL>
++ grep --color=auto -F vmlinuz-5.4.214-team-v0 /boot/grub/grub.cfg
+	linux	/boot/vmlinuz-5.4.214-team-v0 root=UUID=<UUID> ro  quiet splash $vt_handoff
+		linux	/boot/vmlinuz-5.4.214-team-v0 root=UUID=<UUID> ro  quiet splash $vt_handoff
+		linux	/boot/vmlinuz-5.4.214-team-v0 root=UUID=<UUID> ro recovery nomodeset dis_ucode_ldr 
++ grep --color=auto -F vmlinuz-<PREVIOUS_KERNEL> /boot/grub/grub.cfg
+		linux	/boot/vmlinuz-<PREVIOUS_KERNEL> root=UUID=<UUID> ro  quiet splash $vt_handoff
+		linux	/boot/vmlinuz-<PREVIOUS_KERNEL> root=UUID=<UUID> ro recovery nomodeset dis_ucode_ldr 
++ lsinitramfs /boot/initrd.img-5.4.214-team-v0
++ for driver in ahci libahci
++ grep --color=auto -E '/ahci\.ko(\.(gz|xz|zst))?$' <HOME>/v0-prep-logs/<RUN_LOG_DIR>/initramfs.contents
+usr/lib/modules/5.4.214-team-v0/kernel/drivers/ata/ahci.ko
++ for driver in ahci libahci
++ grep --color=auto -E '/libahci\.ko(\.(gz|xz|zst))?$' <HOME>/v0-prep-logs/<RUN_LOG_DIR>/initramfs.contents
+usr/lib/modules/5.4.214-team-v0/kernel/drivers/ata/libahci.ko
++ printf 'PASS: V0 installed, original kernel preserved\n'
+PASS: V0 installed, original kernel preserved

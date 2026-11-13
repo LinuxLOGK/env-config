@@ -1,0 +1,20 @@
+--- original.config
++++ common-v5.4.214.config
+@@ -21,7 +21,7 @@
+ #
+ CONFIG_INIT_ENV_ARG_LIMIT=32
+ # CONFIG_COMPILE_TEST is not set
+-CONFIG_LOCALVERSION="<PREVIOUS_LOCALVERSION>"
++CONFIG_LOCALVERSION=""
+ # CONFIG_LOCALVERSION_AUTO is not set
+ CONFIG_BUILD_SALT=""
+ CONFIG_HAVE_KERNEL_GZIP=y
+@@ -1927,7 +1927,7 @@
+ # CONFIG_RIONET is not set
+ CONFIG_TUN=y
+ # CONFIG_TUN_VNET_CROSS_LE is not set
+-# CONFIG_VETH is not set
++CONFIG_VETH=y
+ # CONFIG_VIRTIO_NET is not set
+ # CONFIG_NLMON is not set
+ # CONFIG_NET_VRF is not set

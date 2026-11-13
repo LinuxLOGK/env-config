@@ -1,0 +1,21 @@
+++ uname -r
++ test 5.4.214-team-v0 = 5.4.214-team-v0
++ cd <HOME>
++ printf '%s\n' '485b5b1928bce0523041c382baecf7b6f7794f865ce965960d85b9719faa3095  ipv6-one-group.sh' 'e30fdcdd6328614e2ee0c6c12750316f5db8a676515e217ac1aa70e9af42add7  ipv6-one-group.py'
++ sha256sum -c -
+ipv6-one-group.sh: OK
+ipv6-one-group.py: OK
++ date -Is
+<TIMESTAMP>
++ sudo bash ./ipv6-one-group.sh
+kernel_release=5.4.214-team-v0
+boot_id=<REDACTED>
+test_namespaces=<TX_NAMESPACE>,<RX_NAMESPACE>
+2:	rx0
+	inet6 ff12::1234
+	inet6 ff02::1:ff00:2
+	inet6 ff02::1
+	inet6 ff01::1
+sent_joined=5, sent_unjoined=5
+received_joined=5, received_unjoined=0
+PASS: joined payload received, unjoined payload absent

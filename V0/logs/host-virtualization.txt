@@ -1,0 +1,4 @@
+Current Ubuntu 20.04 VirtualBox execution: NEM fallback observed.
+Source: VBox.log, last write <TIMESTAMP>
+HM: HMR3Init: Attempting fall back to NEM: VT-x is not available
+NEM: Successfully set up partition

@@ -1,0 +1,39 @@
+{
+  "status": "V0 preparation complete; formal benchmarking not performed",
+  "v0_commit": "9f02aa34e179d1b0185a27980dd5bafd0f2e6e59",
+  "kernel_release": "5.4.214-team-v0",
+  "config_sha256": "733c640517c41e80d9cb5ab03e6547945f7e2c0703ebe483785f125883d4eb45",
+  "os": "Ubuntu 20.04.6 LTS",
+  "architecture": "x86_64",
+  "vcpus": 8,
+  "memory_total": "7.8Gi",
+  "toolchain": {
+    "gcc": "9.4.0",
+    "ld": "2.34",
+    "make": "4.2.1",
+    "python": "3.8.10"
+  },
+  "smoke_test": {
+    "joined_group": "ff12::1234",
+    "unjoined_group": "ff12::5678",
+    "port": 54021,
+    "sent_joined": 5,
+    "sent_unjoined": 5,
+    "received_joined": 5,
+    "received_unjoined": 0,
+    "pass": true,
+    "cleanup_checked": true,
+    "performance_measurement": false
+  },
+  "optmem_max": 20480,
+  "host_virtualization": "NEM fallback observed in current VBox.log",
+  "formal_benchmark_pending": [
+    "host execution environment",
+    "optmem_max=262144 for W_B",
+    "VI/VIS pinned commits and feature/debug options",
+    "workload and repetitions"
+  ],
+  "verified_date": "2026-11-14",
+  "boot_id_changed": true,
+  "public_logs_redacted": true
+}
